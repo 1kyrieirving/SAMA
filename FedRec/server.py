@@ -14,7 +14,7 @@ class FedRecServer(nn.Module):
         self.agg_type = agg_type
         nn.init.normal_(self.items_emb.weight, std=0.01)
 
-        # SDC-Sum defense state
+        # InertiaDamp defense state
         self.last_round_grads = torch.zeros(m_item, dim).to(args.device)
         self.relative_ratio = 1.2
         self.damping_factor = 0.1
@@ -44,7 +44,7 @@ class FedRecServer(nn.Module):
         new_batch_grad = torch.zeros_like(self.items_emb.weight)
 
         with torch.no_grad():
-            if self.agg_type == 'SDCSum':
+            if self.agg_type == 'InertiaDamp':
                 item_sim_stats = {}
 
                 for item_id, grads in collected_grads.items():

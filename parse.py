@@ -15,7 +15,7 @@ def parse_args():
     parser.add_argument('--epochs', type=int, default=200, help='Number of epochs.')
     parser.add_argument('--batch_size', type=int, default=1024, help='Batch size.')
     parser.add_argument('--agg_type', type=str, default='Sum',
-                        help='Aggregation type: Sum (no defense), SDCSum (our defense).')
+                        help='Aggregation type: Sum (no defense), InertiaDamp (our defense).')
     parser.add_argument('--grad_limit', type=float, default=1., help='L2-norm limit for item gradients.')
     return parser.parse_args()
 
